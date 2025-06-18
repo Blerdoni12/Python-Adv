@@ -23,3 +23,10 @@ unique_set=set(my_list)
 
 unique_list=list(unique_set)
 print(unique_list)
+
+
+#in/not in operator
+colors = {"green","red","blue"}
+color="green"
+print(color in colors)
+print(color not in colors)
