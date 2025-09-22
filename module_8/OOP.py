@@ -16,25 +16,6 @@ perimeter = rectangle2.calculate_perimeter()
 print(area)
 print(perimeter)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Person:
 
     def __init__(self,name,age):
