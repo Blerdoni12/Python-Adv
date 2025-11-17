@@ -3,13 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="C:\Users\Student\Downloads\bestsellers_with_categories_2022_03_27.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="C:\Users\Student\weather_tokyo_data.csv">
           <value>
             <Attribute>
@@ -32,6 +25,20 @@
           </value>
         </entry>
         <entry key="\module_18\bestsellers_with_categories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\module_19\best_sellers_with_categories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\module_19\bestsellers_with_categories.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
