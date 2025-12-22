@@ -1,6 +1,6 @@
 import sqlite3
 
-from module_24.database import connection
+
 from models import Movie, MovieCreate
 
 
