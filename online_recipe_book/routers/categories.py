@@ -2,7 +2,7 @@ import sqlite3
 from typing import List
 from streamlit import status
 from models.category import Category, CategoryCreate
-from datebase import get_db_connection
+from database import get_db_connection
 from fastapi import APIRouter, HTTPException
 from unicodedata import category
 
