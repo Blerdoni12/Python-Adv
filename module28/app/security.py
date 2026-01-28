@@ -9,7 +9,7 @@ API_KEY_NAME = "api-key"
 
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
-def get_api_key(api_key: str = Depends(api_key_header)):  new *
+def get_api_key(api_key: str = Depends(api_key_header)):
     allowed_api_key = os.getenv("API_KEYS", "").split(",")
 
     print("Received API Key: ", api_key)
@@ -17,10 +17,7 @@ def get_api_key(api_key: str = Depends(api_key_header)):  new *
 
     if api_key not in allowed_api_key:
         print("API key is invalid.")
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid API key",
-        )
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API key",)
 
     print("API key is valid")
     return api_key

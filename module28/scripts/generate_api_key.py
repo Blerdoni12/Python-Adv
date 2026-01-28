@@ -1,70 +1,29 @@
-from typing import List, Optional
-import sqlite3
-from models import Item
-from database import get_db_connection
+from uuid import uuid4
+from dotenv import load_dotenv, set_key
+import os
 
-def create_item(item: Item) -> Item:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "insert into items (name, description) values (?, ?)",
-        (item.name, item.description)
-    )
+def generate_and_save_api_key():
+    load_dotenv()
 
-    conn.commit()
-    item.id = cursor.lastrowid
-    conn.close()
-    return item
+    api_key = str(uuid4())
+    print(f"Generated API key: {api_key}")
 
-def get_item() -> List[Item]:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    items = cursor.execute("select * from itmes").fetchall()
-    conn.close()
-    return [item(**dict(item)) for item in items]
+    root_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    env_file = os.path.join(root_directory, ".env")
 
-def get_item(item_id: int) -> Optional[Item]:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    item = cursor.execute(
-        "select * from items where id = ?",
-        (item_id,)
-    ).fetchone()
-    conn.close()
+    if not os.path.isfile(env_file):
+        open(env_file, 'w').close()
 
-    if item is None:
-        return None
+    existing_keys = os.getenv("API_KEYS", "")
 
-    return Item(**dict(item))
+    if existing_keys:
+        existing_keys = existing_keys.strip(", ")
+        new_keys = f"{existing_keys}, {api_key}" if existing_keys else api_key
+    else:
+        new_keys = api_key
 
+    set_key(env_file, "API_KEYS", new_keys)
+    print(f"API Keys updated: {new_keys}")
 
-def update_item(item_id: int, item: Item) -> Optional[Item]:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "update items set name = ?, description = ?",
-        (item.name, item.description)
-    )
-    conn.commit()
-    updated = cursor.rowcount
-    conn.close()
-
-    if updated == 0:
-        return None
-
-    item.id = item_id
-    return item
-
-
-def delete_item(item_id: int) -> bool:
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "delete from items where id = ?",
-        (item_id,)
-    )
-    conn.commit()
-    deleted = cursor.rowcount
-    conn.close()
-
-    return deleted > 0
+if __name__ == "__main__":
+    generate_and_save_api_key()
