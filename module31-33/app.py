@@ -221,8 +221,17 @@ def visualizations_dashboard():
 
         min_year = int(df_books['published_year'].min())
         max_year = int(df_books['published_year'].max())
-        selected_year = st.sidebar.slider("Select Published Year", min_value=min_year, max_value=max_year,
-                                          value=(min_year, max_year))
+
+        if min_year == max_year:
+            st.sidebar.info(f"Only one published year available: {min_year}")
+            selected_year = (min_year, max_year)
+        else:
+            selected_year = st.sidebar.slider(
+                "Select Published Year",
+                min_value=min_year,
+                max_value=max_year,
+                value=(min_year, max_year)
+            )
 
         selected_rating = st.sidebar.slider("Select Average Rating", min_value=0.0, max_value=5.0, value=(0.0, 5.0),
                                             step=0.1)

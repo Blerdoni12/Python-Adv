@@ -10,14 +10,11 @@ class BookBase(BaseModel):
     average_rating: Optional[float] = None
     published_year: Optional[int] = None
 
-
 class BookCreate(BookBase):
     pass
 
-
 class BookResponse(BookBase):
     id: int
-
 
 class Book(BookBase):
     id: int
