@@ -19,4 +19,4 @@ class StudyPlanResponse(StudyPlanBase):
 
 class StudyPlan(StudyPlanBase):
     id:int
-    user_id:int
+    user_id:int+
